@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sales</title>
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
+</head>
+<body>
+<header><h1>Place Your Order</h1></header>
+<nav>
+  <a href="Home.html">Home</a>
+  <a href="Sales.html">Sales</a>
+  <a href="Materials.html">Materials</a>
+  <a href="ContactUs.html">Contact Us</a>
+  <a class="btn" href="Login.html">Login</a>
+</nav>
+
+<div class="container">
+  <form onsubmit="submitSalesForm(event)">
+    <label for="customer">Your Name</label>
+    <input type="text" id="customer" name="customer" required>
+
+    <label for="material">Material Name</label>
+    <input type="text" id="material" name="material" required>
+
+    <label for="quantity">Number of Materials</label>
+    <input type="number" id="quantity" name="quantity" min="1" required>
+
+    <label for="price">Price per Material</label>
+    <input type="number" id="price" name="price" step="0.01" required>
+
+    <label for="language">Language</label>
+    <select id="language" name="language" required>
+      <option>English</option>
+      <option>Afrikaans</option>
+      <option>Zulu</option>
+      <option>Xhosa</option>
+    </select>
+
+    <label for="country">Country</label>
+    <select id="country" name="country" required>
+      <option>South Africa</option>
+      <option>Botswana</option>
+      <option>Namibia</option>
+    </select>
+
+    <label>Send via:</label>
+    <select name="method">
+      <option value="email">Email</option>
+      <option value="whatsapp">WhatsApp</option>
+      <option value="sms">SMS</option>
+    </select>
+
+    <button type="submit">Submit Order</button>
+  </form>
+</div>
+
+<footer>&copy; 2025 HS Hardware Store</footer>
+</body>
+</html>
