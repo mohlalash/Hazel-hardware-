@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hazel Hardware - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header><h1>Hazel Hardware</h1></header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="service.html">Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <div class="container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <input type="submit" value="Login">
+        </form>
+        <p id="loginMessage" style="margin-top:10px;"></p>
+    </div>
+    <footer><p>&copy; 2025 Hazel Hardware. All rights reserved.</p></footer>
+
+    <script>
+        const users = { "admin": "admin123", "user": "user123" };
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if(users[username] && users[username] === password) {
+                localStorage.setItem('loggedIn', 'true');
+                localStorage.setItem('username', username);
+                document.getElementById('loginMessage').innerText = "Login successful! Redirecting...";
+                setTimeout(() => { window.location.href = "service.html"; }, 1000);
+            } else {
+                document.getElementById('loginMessage').innerText = "Invalid username or password.";
+            }
+        });
+
+        if(localStorage.getItem('loggedIn') === 'true') {
+            window.location.href = "service.html";
+        }
+    </script>
+</body>
+</html>

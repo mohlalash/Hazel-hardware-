@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hazel Hardware - Services</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header><h1>Hazel Hardware</h1></header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="service.html">Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <div class="container">
+        <h2 id="greeting"></h2>
+        <h1>Our Services</h1>
+
+        <div class="services">
+            <div class="service-item">
+                <img src="images/supply.jpeg" alt="Hardware Supply">
+                <div class="service-info">Hardware Supply</div>
+            </div>
+            <div class="service-item">
+                <img src="images/repair.jpg" alt="Repairs">
+                <div class="service-info">Repairs</div>
+            </div>
+            <div class="service-item">
+                <img src="images/customer order.jpeg" alt="Customer Orders">
+                <div class="service-info">Custom Orders</div>
+            </div>
+            <div class="service-item">
+                <img src="images/delivery.jpeg" alt="Delivery">
+                <div class="service-info">Delivery</div>
+            </div>
+        </div>
+
+        <form class="service-form" id="serviceForm">
+            <label>
+                Select Service:
+                <select id="serviceSelect">
+                    <option value="Hardware Supply" data-price="50">Hardware Supply - $50</option>
+                    <option value="Repairs" data-price="100">Repairs - $100</option>
+                    <option value="Custom Orders" data-price="150">Custom Orders - $150</option>
+                    <option value="Delivery" data-price="30">Delivery - $30</option>
+                </select>
+            </label>
+            <label>
+                Quantity:
+                <input type="number" id="quantity" value="1" min="1">
+            </label>
+            <input type="button" value="Generate Invoice" onclick="generateInvoice()">
+        </form>
+
+        <div class="invoice" id="invoice" style="display:none;">
+            <h2>Invoice / Quotation</h2>
+            <p id="invoiceDetails"></p>
+            <button onclick="printInvoice()">Print Invoice</button>
+        </div>
+
+        <button onclick="logout()" class="btn" style="margin-top:20px;">Logout</button>
+    </div>
+    <footer><p>&copy; 2025 Hazel Hardware. All rights reserved.</p></footer>
+
+    <script>
+        if(localStorage.getItem('loggedIn') !== 'true') {
+            alert("Please login first to access services.");
+            window.location.href = "login.html";
+        }
+
+        const username = localStorage.getItem('username');
+        if(username) {
+            document.getElementById('greeting').innerText = `Hello, ${username}! Choose a service below:`;
+        }
+
+        function generateInvoice() {
+            const serviceSelect = document.getElementById('serviceSelect');
+            const serviceName = serviceSelect.value;
+            const price = Number(serviceSelect.selectedOptions[0].dataset.price);
+            const quantity = Number(document.getElementById('quantity').value);
+
+            const total = price * quantity;
+
+            document

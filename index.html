@@ -1,34 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Home</title>
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>Hazel Hardware - Home</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header><h1>HS Hardware Store</h1></header>
-<nav>
-  <a href="Home.html">Home</a>
-  <a href="Sales.html">Sales</a>
-  <a href="Materials.html">Materials</a>
-  <a href="ContactUs.html">Contact Us</a>
-  <a class="btn" href="Login.html">Login</a>
-</nav>
+    <header><h1>Hazel Hardware</h1></header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="service.html">Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="login.html">Login</a>
+    </nav>
 
-<div class="container">
-  <h2>Welcome to Our Hardware Store</h2>
-  <p>Find the best tools and building materials for your projects at lower costs.</p>
-</div>
-<div class="container">
- 
-  <p>.</p>
-</div>
-<br>
-<br>
-<br>
-<br>
+    <div class="container">
+        <h2 id="welcomeMessage">Welcome to Hazel Hardware</h2>
+        <p>Your one-stop shop for quality hardware materials and services.</p>
 
-<footer>&copy; 2025 HS Hardware Store</footer>
+        <div class="products">
+            <div class="product">
+                <img src="images/Hammer.jpg" alt="Hammer">
+                <div class="product-info">Hammer</div>
+            </div>
+            <div class="product">
+                <img src="images/nails 6 inch.jpeg " alt="Nails">
+                <div class="product-info">Nails</div>
+            </div>
+            <div class="product">
+                <img src="images/paint.jpg" alt="Paint">
+                <div class="product-info">Paint</div>
+            </div>
+            <div class="product">
+                <img src="images/set tools.jpeg" alt="Tools Set">
+                <div class="product-info">Tools Set</div>
+            </div>
+        </div>
+
+        <button onclick="logout()" class="btn" style="margin-top:20px;">Logout</button>
+    </div>
+    <footer><p>&copy; 2025 Hazel Hardware. All rights reserved.</p></footer>
+
+    <script>
+        const username = localStorage.getItem('username');
+        if(username) {
+            document.getElementById('welcomeMessage').innerText = `Welcome, ${username}!`;
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            localStorage.removeItem('username');
+            alert("You have been logged out.");
+            window.location.href = "login.html";
+        }
+    </script>
 </body>
 </html>
